@@ -6,9 +6,9 @@ import PropTypes from "prop-types";
 class MyComponent extends React.Component{ 
     state = {
         listUser:[
-            {id: 1, name: "Dung", age: 49},
-            {id: 2, name: "Ha", age: 30},
-            {id: 3, name: "Mai", age: 17}
+            {id: 1, name: "Ha Thanh Tuan", age: 20},
+            {id: 2, name: "Tien Linh", age: 26},
+            {id: 3, name: "Van Anh", age: 20}
         ]
     }
 
