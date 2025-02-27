@@ -1,10 +1,10 @@
 import './App.css'
-import Calculator from './components/Calculator'
+import Application from './components/Application';
 
 function App() {
   return (
-    <Calculator/>
+    <Application/>
   )
 }
 
-export default App
+export default App;

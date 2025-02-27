@@ -1,0 +1,14 @@
+.inputBox{
+    width: 600px;
+    display: flex;
+}
+
+.inputBox>label{
+    width: 35%;
+    text-align: left;
+    margin-bottom: 15px;
+}
+.inputBox>input{
+    width: 65%;
+    margin-bottom: 15px;
+}
