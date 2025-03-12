@@ -1,14 +1,11 @@
 import './App.css'
 import NewPage from './components/NewPage';
-import BaiTap from '../src/baitapthuchanh/baitapthuchanh/BaiTap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <>
-      {/* <NewPage></NewPage> */}
-      <div className='container row'>
-      <BaiTap />
-    </div>
+      <NewPage></NewPage>
     </>
   )
 }

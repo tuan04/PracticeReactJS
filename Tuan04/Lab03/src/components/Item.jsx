@@ -1,12 +1,14 @@
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-const Item = ({img, name, timeForCook}) =>{
-    console.log({name})
+const Item = ({item}) =>{
+    let {img, name, timeForCook} = item;
     return(
-        <div>
-            <img src={img} alt="" />
-            <div>{name}</div>
-            <div>{timeForCook}</div>
-        </div>
+        <Card className='p-0 m-0'>
+            <Card.Img src={img} className="img-fluid"/>
+            <Card.Title>{name}</Card.Title>
+            <Card.Text >Time for cook: {timeForCook}min</Card.Text>
+        </Card>
     );
 }
 
