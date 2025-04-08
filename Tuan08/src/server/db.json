@@ -1,0 +1,22 @@
+{
+  "tunrover": {
+    "metric": 92405,
+    "poc": 5.39
+  },
+  "profit": {
+    "metric": 32218,
+    "poc": 5.39
+  },
+  "newCustomer": {
+    "metric": 298,
+    "poc": 6.84
+  },
+  "orders": [
+    {
+        "customerName": "Elizabeth Lee",
+        "orderValue": 359,
+        "orderData": "10/07/2023",
+        "status": "New"
+    }
+  ]
+}

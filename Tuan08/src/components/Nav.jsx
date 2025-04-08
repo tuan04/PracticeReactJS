@@ -8,23 +8,24 @@ import analys from '../assets/Pie chart.png'
 import mess from '../assets/Chat.png'
 import code from '../assets/Code.png'
 import group from '../assets/Group.png'
+import NavItem from './NavItem'
 
 export default function Nav() {
     return (
-        <div className='p-2'>
-            <img src={Logo} alt=""className='mb-4'/>
-            <div className='grid grid-flows-col'>
-                <NavLink className="flex mx-2 py-4 rounded"> <img src={dasborad} alt="" />Dashboard</NavLink>
-                <NavLink className="flex mx-2 py-4 rounded"><img src={folder} alt="" />Project</NavLink>
-                <NavLink className="flex mx-2 py-4 rounded"><img src={team} alt="" />Teams</NavLink>
-                <NavLink className="flex mx-2 py-4 rounded"><img src={analys} alt="" />Analytics</NavLink>
-                <NavLink className="flex mx-2 py-4 rounded"><img src={mess} alt="" />Messages</NavLink>
-                <NavLink className="flex mx-2 py-4 rounded"><img src={code} alt="" />Integration</NavLink>
+        <div className='px-6 relative h-screen border-r border-gray-300'>
+            <img src={Logo} alt=""className='my-2'/>
+            <div className='grid grid-flows-col gap-3 mt-5'>
+                <NavItem icon={dasborad} content="Dashborad"/>
+                <NavItem icon={folder} content="Project"/>
+                <NavItem icon={team} content="Teams"/>
+                <NavItem icon={analys} content="Analytics"/>
+                <NavItem icon={mess} content="Messages"/>
+                <NavItem icon={code} content="Integration"/>
             </div>
-            <div className='mt-10 grid grid-flows-row text-center p-4 gap-2 bg-[rgb(240,246,255)]'>
+            <div className='absolute bottom-0 rounded grid grid-flow-row text-center p-4 gap-2 bg-[rgb(240,246,255)]'>
                 <img src={group}/>
-                <p>V2.0 is available</p>
-                <button className='border rounded py-2'>Try now</button>
+                <p className='font-bold'>V2.0 is available</p>
+                <button className='border rounded py-1 text-[rgb(43,128,255)]'>Try now</button>
             </div>
         </div>
     )
