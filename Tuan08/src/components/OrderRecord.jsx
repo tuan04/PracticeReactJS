@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import editIcon from "../assets/create.png";
-import avt from "../assets/Avatar (2).png"
-export default function OrderRecord() {
-  const [order, setOrder] = useState();
-  
+export default function OrderRecord({ item }) {
+  const [status, setStatus] = useState("bg-[rgb(240,247,252)] text-[rgb(55,154,230)]");
+  useEffect(()=>{
+    if(item.status == "In-progress") setStatus("bg-[rgb(255,250,240)] text-[rgb(153,106,12)]");
+    if(item.status == "Completed") setStatus("bg-[rgb(237,252,242)] text-[rgb(17,122,52)]");
+  }, []);
+
   return (
-    <tr>
-      <td className="pl-4 py-3"><input type="checkbox"/></td>
-      <td className="flex gap-2 items-center py-3"><img src={avt}/><p>Aloha Aloha</p></td>
-      <td className="py-3">Mai da choc</td>
-      <td className="py-3">1-1-1</td>
-      <td className="py-3">asdfaf</td>
-      <td className="py-3">asfd</td>
+    <tr className="border-b border-gray-200">
+      <td className="pl-4 py-3">
+        <input type="checkbox" />
+      </td>
+      <td className="flex gap-2 items-center py-3">
+        <img src={item.image} />
+        <p>{item.customerName}</p>
+      </td>
+      <td className="py-3">{item.company}</td>
+      <td className="py-3">${item.orderValue}</td>
+      <td className="py-3">{item.orderDate}</td>
+      <td className="py-3">
+        <p className={status + " inline-block rounded-full px-2"}>{item.status}</p>
+      </td>
       <td className="py-3">
         <img src={editIcon} />
       </td>
