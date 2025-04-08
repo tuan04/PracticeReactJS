@@ -20,4 +20,3 @@ export const getNewCust = async () => {
     return data;
 }
 
-
