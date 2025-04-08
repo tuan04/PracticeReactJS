@@ -15,12 +15,12 @@ export default function Nav() {
         <div className='px-6 relative h-screen border-r border-gray-300'>
             <img src={Logo} alt=""className='my-2'/>
             <div className='grid grid-flows-col gap-3 mt-5'>
-                <NavItem icon={dasborad} content="Dashborad"/>
-                <NavItem icon={folder} content="Project"/>
-                <NavItem icon={team} content="Teams"/>
-                <NavItem icon={analys} content="Analytics"/>
-                <NavItem icon={mess} content="Messages"/>
-                <NavItem icon={code} content="Integration"/>
+                <NavItem toPath="/" icon={dasborad} content="Dashborad"/>
+                <NavItem toPath="/project" icon={folder} content="Project"/>
+                <NavItem toPath="/teams" icon={team} content="Teams"/>
+                <NavItem toPath="/analytics" icon={analys} content="Analytics"/>
+                <NavItem toPath="/messages" icon={mess} content="Messages"/>
+                <NavItem toPath="/integration" icon={code} content="Integration"/>
             </div>
             <div className='absolute bottom-0 rounded grid grid-flow-row text-center p-4 gap-2 bg-[rgb(240,246,255)]'>
                 <img src={group}/>
