@@ -13,7 +13,7 @@
   },
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "customerName": "Carlos Garcia",
       "company": "SmoozeShift",
       "orderValue": 747,
@@ -22,7 +22,7 @@
       "status": "New"
     },
     {
-      "id": 2,
+      "id": "2",
       "customerName": "Elizabeth Lee",
       "orderValue": 359,
       "company": "AvatarSystems",
@@ -31,16 +31,16 @@
       "status": "New"
     },
     {
-      "id": 3,
+      "id": "3",
       "customerName": "Ryan Young",
       "orderValue": 769,
       "company": "DataStream Inc.",
       "image": "https://res.cloudinary.com/dzcwbvlk4/image/upload/v1744136069/user/w7h1tau36ytrbedhgajm.png",
       "orderDate": "01/05/2023",
-      "status": "Completed"
+      "status": "In-progress"
     },
     {
-      "id": 4,
+      "id": "4",
       "customerName": "Hailey Adams",
       "company": "FlowRush",
       "orderValue": 922,
@@ -49,7 +49,7 @@
       "status": "Completed"
     },
     {
-      "id": 5,
+      "id": "5",
       "customerName": "Elizabeth Bailey",
       "company": "Prime Time Telecom",
       "orderValue": 564,
@@ -58,7 +58,7 @@
       "status": "In-progress"
     },
     {
-      "id": 6,
+      "id": "6",
       "customerName": "Ryan Brown",
       "company": "OmniTech Corporation",
       "orderValue": 541,

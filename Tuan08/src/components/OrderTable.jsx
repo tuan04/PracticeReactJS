@@ -3,8 +3,29 @@ import reportIcon from "../assets/File text 1.png";
 import importIcon from "../assets/Download.png";
 import exportIcon from "../assets/Move up.png";
 import OrderRecord from "./OrderRecord";
-import { getOrders } from "../server/api";
+import { getOrders, updateOrder } from "../server/api";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    width: "500px",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    padding: 0,
+  },
+};
+Modal.setAppElement("#root");
+
 export default function OrderTable() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState({});
+  const [editedOrder, setEditedOrder] = useState({});
+  const [order, setOrder] = useState([]);
+
   const tableHeaders = [
     "CUSTOMER NAME",
     "COMPANY",
@@ -12,7 +33,34 @@ export default function OrderTable() {
     "ORDER DATE",
     "STATUS",
   ];
-  const [order, setOrder] = useState([{}]);
+
+  const handleEditClick = (order) => {
+    setSelectedOrder(order);
+    setEditedOrder(order);
+    setModalOpen(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedOrder((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = async () => {
+    try {
+      await updateOrder(selectedOrder.id, editedOrder);
+      setOrder((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === selectedOrder.id ? editedOrder : order
+        )
+      );
+      setModalOpen(false);
+    } catch (error) {
+      console.error("Failed to update order:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +68,7 @@ export default function OrderTable() {
         const data = await getOrders();
         setOrder(data);
       } catch (error) {
-        console.log("Lỗi khi fectch API Orders " + error);
+        console.log("Lỗi khi fetch API Orders " + error);
       }
     };
     fetchData();
@@ -65,13 +113,90 @@ export default function OrderTable() {
           <th></th>
         </tr>
         {order.map((item) => (
-          <OrderRecord item={item} />
+          <OrderRecord
+            key={item.id}
+            handleEditClick={handleEditClick}
+            item={item}
+          />
         ))}
       </table>
-      <div className="flex justify-between my-2">
-        <div></div>
-        <div></div>
-      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        contentLabel="OrderUpdate"
+        style={customStyles}
+      >
+        <div className="flex justify-between p-3 border-b border-gray-300">
+          <h2 className="text-lg">Order Update</h2>
+          <button
+            onClick={() => {
+              setModalOpen(false);
+            }}
+            className="text-xl rounded px-2 hover:cursor-pointer hover:border hover:border-[red] hover:text-[red]"
+          >
+            X
+          </button>
+        </div>
+        <div className="grid grid-cols-12 m-3 gap-4">
+          <label className="col-span-4">Customer Name :</label>
+          <input
+            type="text"
+            name="customerName"
+            className="col-span-8 border rounded border-gray-300 p-1"
+            value={editedOrder.customerName || ""}
+            onChange={handleInputChange}
+          />
+          <label className="col-span-4">Company :</label>
+          <input
+            type="text"
+            name="company"
+            className="col-span-8 border rounded border-gray-300 p-1"
+            value={editedOrder.company || ""}
+            onChange={handleInputChange}
+          />
+          <label className="col-span-4">Order Value :</label>
+          <input
+            type="text"
+            name="orderValue"
+            className="col-span-8 border rounded border-gray-300 p-1"
+            value={editedOrder.orderValue || ""}
+            onChange={handleInputChange}
+          />
+          <label className="col-span-4">Order Date :</label>
+          <input
+            type="text"
+            name="orderDate"
+            className="col-span-8 border rounded border-gray-300 p-1"
+            value={editedOrder.orderDate || ""}
+            onChange={handleInputChange}
+          />
+          <label className="col-span-4">Status :</label>
+          <select
+            name="status"
+            className="col-span-8 border rounded border-gray-300 p-1"
+            value={editedOrder.status || ""}
+            onChange={handleInputChange}
+          >
+            <option value="New">New</option>
+            <option value="In-progress">In-progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <div className="flex gap-4 p-3 border-t border-gray-300 justify-end">
+          <button
+            className="bg-[green] rounded px-4 py-1 text-white"
+            onClick={handleSave}
+          >
+            Save
+          </button>
+          <button
+            className="bg-[red] rounded px-4 py-1 text-white"
+            onClick={() => setModalOpen(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

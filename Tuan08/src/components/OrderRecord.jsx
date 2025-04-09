@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import editIcon from "../assets/create.png";
-export default function OrderRecord({ item }) {
+export default function OrderRecord({ item, handleEditClick }) {
   const [status, setStatus] = useState("bg-[rgb(240,247,252)] text-[rgb(55,154,230)]");
   useEffect(()=>{
     if(item.status == "In-progress") setStatus("bg-[rgb(255,250,240)] text-[rgb(153,106,12)]");
@@ -22,9 +22,10 @@ export default function OrderRecord({ item }) {
       <td className="py-3">
         <p className={status + " inline-block rounded-full px-2"}>{item.status}</p>
       </td>
-      <td className="py-3">
-        <img src={editIcon} />
+      <td className="py-3 hover:cursor-pointer">
+        <img src={editIcon} onClick={()=>{handleEditClick(item)}}/>
       </td>
+
     </tr>
   );
 }
